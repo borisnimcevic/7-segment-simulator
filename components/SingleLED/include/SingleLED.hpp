@@ -12,6 +12,7 @@ class SingleLED {
 private:
   lightState state;
   float length;
+  unsigned dutyCycle_ms;
   sf::Color color;
   sf::RectangleShape *led;
   sf::Vector2f position;
@@ -19,7 +20,7 @@ private:
 public:
   // Constructor & Destructor
   SingleLED(float pos_x = 0.f, float pos_y = 0.f, float length = 1,
-            sf::Color col = sf::Color::Red);
+            unsigned dutyCycle_ms = 500, sf::Color col = sf::Color::Red);
   virtual ~SingleLED();
 
   // Led control
@@ -28,7 +29,8 @@ public:
   void toggleLED();
 
   // Setters and getter
-  sf::RectangleShape getLED();
+  sf::RectangleShape *getLED() const;
+  unsigned getDutyCycle() const;
 };
 
 #endif // _SINGLE_LED_H_

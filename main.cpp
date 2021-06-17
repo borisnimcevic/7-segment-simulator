@@ -3,20 +3,17 @@
 #include "SingleLED.hpp"
 #include <unistd.h>
 
-static const unsigned BLINK_RATE_ms = 200;
-
 int main() {
 
   // Window:
   sf::RenderWindow window(sf::VideoMode(200, 200), "7-segment simulator");
   window.setFramerateLimit(30);
+  window.clear();
 
-  SingleLED led1(50.f, 50.f, 100.f, sf::Color::Yellow);
+  SingleLED led1(50.f, 50.f, 100.f, 500, sf::Color::Red);
 
   // Clock:
   sf::Clock clock;
-  auto currentTime = clock.getElapsedTime();
-  auto previousTime = clock.getElapsedTime();
 
   while (window.isOpen()) {
     sf::Event event;
@@ -38,15 +35,13 @@ int main() {
       }
     }
 
-    currentTime = clock.getElapsedTime();
-    if (currentTime.asMilliseconds() >
-        (previousTime.asMilliseconds() + BLINK_RATE_ms)) {
-      previousTime = currentTime;
+    if (clock.getElapsedTime().asMilliseconds() > led1.getDutyCycle()) {
+      clock.restart();
       led1.toggleLED();
     }
 
     window.clear();
-    window.draw(led1.getLED());
+    window.draw(*led1.getLED());
     window.display();
   }
 
