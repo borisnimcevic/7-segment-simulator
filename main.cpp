@@ -1,5 +1,6 @@
-#include <SFML/Graphics.hpp>
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include "SingleLED.hpp"
 #include <unistd.h>
 
 static const unsigned BLINK_RATE_ms = 200;
@@ -10,17 +11,7 @@ int main() {
   sf::RenderWindow window(sf::VideoMode(200, 200), "7-segment simulator");
   window.setFramerateLimit(30);
 
-  // Shapes:
-  auto position = sf::Vector2f(35.f, 35.f);
-  auto size = sf::Vector2f(100.f, 10.f);
-  auto red = sf::Color::Red;
-  auto black = sf::Color::Black;
-  bool ledState = true;
-
-  sf::RectangleShape led;
-  led.setFillColor(red);
-  led.setPosition(position);
-  led.setSize(size);
+  SingleLED led1(50.f, 50.f, 100.f, sf::Color::Yellow);
 
   // Clock:
   sf::Clock clock;
@@ -51,15 +42,11 @@ int main() {
     if (currentTime.asMilliseconds() >
         (previousTime.asMilliseconds() + BLINK_RATE_ms)) {
       previousTime = currentTime;
-      ledState ^= true;
-      if (ledState)
-        led.setFillColor(red);
-      else
-        led.setFillColor(black);
+      led1.toggleLED();
     }
 
     window.clear();
-    window.draw(led);
+    window.draw(led1.getLED());
     window.display();
   }
 

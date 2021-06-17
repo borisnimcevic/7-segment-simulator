@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
-set(CMAKE_CXX_COMPILER clang++)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 if(NOT CMAKE_BUILD_TYPE)
@@ -19,7 +18,11 @@ find_package(SFML 2.5
 
 # Compile executable
 add_executable(${PROJECT_NAME} main.cpp)
+add_subdirectory(components/SingleLED)
 
-target_link_libraries(${PROJECT_NAME} sfml-graphics)
+target_link_libraries(${PROJECT_NAME} 
+  sfml-graphics
+  sub::singleled
+)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
