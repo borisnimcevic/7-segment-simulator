@@ -5,6 +5,10 @@
 
 int main() {
 
+  SingleLed led;
+  led.setON();
+  std::cout << "Led state: " << led.getState() << "\n";
+
 /*   // Window: */
 /*   sf::RenderWindow window(sf::VideoMode(200, 200), "7-segment simulator"); */
 /*   window.setFramerateLimit(30); */
@@ -45,5 +49,5 @@ int main() {
 /*     window.display(); */
 /*   } */
 
-/*   return 0; */
+  return EXIT_SUCCESS;
 }
