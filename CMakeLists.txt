@@ -19,10 +19,12 @@ find_package(SFML 2.5
 # Compile executable
 add_executable(${PROJECT_NAME} main.cpp)
 add_subdirectory(components/SingleLed)
+add_subdirectory(components/DisplayDriver)
 
 target_link_libraries(${PROJECT_NAME} 
   sfml-graphics
   sub::singleledlib 
+  sub::displaydriverlib
 )
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
