@@ -1,12 +1,17 @@
 #include "SingleLed.hpp"
 
 // Constructor and Destructor
-SingleLed::SingleLed(ledState state) { this->state = state; }
+SingleLed::SingleLed(ledState state, unsigned dutyCycle_ms) { 
+  this->state = state;
+  this->dutyCycle_ms = dutyCycle_ms;
+}
 
 SingleLed::~SingleLed() {}
 
 // Getters
-bool SingleLed::getState() const { return this->state; }
+const bool SingleLed::getState() const { return this->state; }
+
+const unsigned SingleLed::getDutyCycle() const { return this->dutyCycle_ms; }
 
 // Setters
 void SingleLed::setON() { this->state = ON; }

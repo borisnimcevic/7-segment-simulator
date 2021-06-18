@@ -9,14 +9,17 @@ enum ledState{
 class SingleLed {
 private:
   ledState state;
+  unsigned dutyCycle_ms;
 
 public:
   // Constructor and Destructor
-  SingleLed(ledState state = OFF);
+  SingleLed(ledState state = OFF, unsigned dutyCycle_ms = 500);
   virtual ~SingleLed();
 
   // Getters
-  bool getState() const;
+  const bool getState() const;
+  const unsigned getDutyCycle() const;
+
 
   // Setters
   void setON();

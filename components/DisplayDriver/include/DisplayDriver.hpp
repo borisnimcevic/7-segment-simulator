@@ -1,6 +1,32 @@
-#ifndef _DisplayDriver_H_
-#define _DisplayDriver_H_
+#ifndef _DISPLAYDRIVER_H_
+#define _DISPLAYDRIVER_H_
 
-int multiply(int, int);
+#include "SingleLed.hpp"
+#include <SFML/Graphics.hpp>
 
-#endif //_DisplayDriver_H_
+class Display {
+private:
+  sf::RenderWindow *window;
+  sf::RectangleShape *square;
+  sf::Event event;
+  SingleLed *led;
+
+  // Functions
+  void initializeWindow();
+  void initializeLED();
+  void pollEvents();
+public:
+  // Constructor & Destructor
+  Display(SingleLed *led = nullptr);
+  virtual ~Display();
+
+  // Functions
+  void show() const;
+  void attachLED(SingleLed *led);
+  void update();
+
+  // Accessors
+  const bool isDisplayOpen() const;
+};
+
+#endif // _DISPLAYDRIVER_H_
