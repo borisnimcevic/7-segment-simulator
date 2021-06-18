@@ -1,5 +1,2 @@
-#include "SingleLed.h"
+#include "SingleLed.hpp"
 
-int multiply(int a, int b){
-  return a * b;
-}

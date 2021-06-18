@@ -18,11 +18,11 @@ find_package(SFML 2.5
 
 # Compile executable
 add_executable(${PROJECT_NAME} main.cpp)
-add_subdirectory(components/SingleLED)
+add_subdirectory(components/SingleLed)
 
 target_link_libraries(${PROJECT_NAME} 
   sfml-graphics
-  sub::singleled
+  sub::singleledlib 
 )
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
