@@ -11,7 +11,9 @@ SingleLed::~SingleLed() {}
 // Getters
 const bool SingleLed::getState() const { return this->state; }
 
-const unsigned SingleLed::getDutyCycle() const { return this->dutyCycle_ms; }
+const unsigned SingleLed::getDutyCycle() const {
+  return this->dutyCycle_ms;
+}
 
 // Setters
 void SingleLed::setON() { this->state = ON; }

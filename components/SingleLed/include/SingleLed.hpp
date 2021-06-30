@@ -22,8 +22,8 @@ public:
 
 
   // Setters
-  void setON();
-  void setOFF();
+  inline void setON();
+  inline void setOFF();
   void toggleState();
 };
 
