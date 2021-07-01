@@ -8,23 +8,43 @@ enum ledState{
 
 class SingleLed {
 private:
-  ledState state;
-  unsigned dutyCycle_ms;
+  // variables
+  ledState state = OFF;
+  unsigned dutyCycle_ms = 0;
+
+  // functions
+  void initLED();
+  void deinitLED();
+  void turnLEDoff_();
+  void turnLEDon_();
 
 public:
   // Constructor and Destructor
-  SingleLed(ledState state = OFF, unsigned dutyCycle_ms = 500);
-  virtual ~SingleLed();
+  SingleLed(ledState st = OFF, unsigned dt_ms = 500)
+      : state(st), dutyCycle_ms(dt_ms) {
+        initLED();
+      }
+  
+  virtual ~SingleLed(){
+    deinitLED();
+  }
 
   // Getters
-  const bool getState() const;
-  const unsigned getDutyCycle() const;
-
+  const unsigned getDutyCycle() const { return dutyCycle_ms; }
+  const bool getState() const { return state; }
 
   // Setters
-  inline void setON();
-  inline void setOFF();
-  void toggleState();
+  void setON() {
+    state = ON;
+    turnLEDon_();
+  }
+
+  void setOFF() {
+    state = OFF;
+    turnLEDoff_();
+  }
+
+  void toggleState() { state ? setOFF() : setON(); }
 };
 
 #endif //_SINGLELED_H_

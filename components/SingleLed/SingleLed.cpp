@@ -1,28 +1,18 @@
 #include "SingleLed.hpp"
+#include <SFML/Graphics.hpp>
 
-// Constructor and Destructor
-SingleLed::SingleLed(ledState state, unsigned dutyCycle_ms) { 
-  this->state = state;
-  this->dutyCycle_ms = dutyCycle_ms;
+sf::RectangleShape *square = nullptr;
+
+void SingleLed::initLED(){
+  square = new sf::RectangleShape(sf::Vector2f(20.f, 70.f));
+  square->setPosition(sf::Vector2f(10.f, 10.f));
+  square->setFillColor(sf::Color::Red);
 }
 
-SingleLed::~SingleLed() {}
-
-// Getters
-const bool SingleLed::getState() const { return this->state; }
-
-const unsigned SingleLed::getDutyCycle() const {
-  return this->dutyCycle_ms;
+void SingleLed::deinitLED(){
+  delete square;
 }
 
-// Setters
-void SingleLed::setON() { this->state = ON; }
+void SingleLed::turnLEDoff_() { square->setFillColor(sf::Color::Red); }
 
-void SingleLed::setOFF() { this->state = OFF; }
-
-void SingleLed::toggleState() {
-  if (state)
-    this->setOFF();
-  else
-    this->setON();
-}
+void SingleLed::turnLEDon_() { square->setFillColor(sf::Color::Red); }
